@@ -1,10 +1,3 @@
-import * as readline from 'readline';
-
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
-
 //validate the user input
 function validateName(fullName) {
   const valid = /^[a-zA-Z]+(\s{0,1}[a-zA-Z-, ])*$/;
@@ -43,19 +36,4 @@ function printResult(nameWithInit) {
   console.log("Name with initials: " + nameWithInit);
 }
 
-rl.question(
-  "Enter fullname: ",
-
-  (fullName) => {
-    try {
-      validateName(fullName);
-      const nameWithInit = getNameWithInitials(fullName);
-      printResult(nameWithInit);
-    } catch (error) {
-      console.log(error.message);
-    }
-    rl.close();
-  }
-);
-
-export { getNameWithInitials }; 
+export { validateName, getNameWithInitials, printResult };
