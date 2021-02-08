@@ -1,32 +1,12 @@
-var fullName = getFullName();
-console.log(fullName);
-// var nameWithInit = getNameWithInitials(fullName);
-// printResult(nameWithInit);
+//validate the user input
+function validateName(fullName) {
+  const valid = /^[a-zA-Z]+(\s{0,1}[a-zA-Z-, ])*$/;
 
-//read user input
-function getFullName() {
-  const readline = require("readline");
+  if (fullName.match(valid)) {
+    return fullName;
+  }
 
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  });
-
-  rl.question(
-    "Enter fullname: ",
-
-    (fullName) => {
-      var valid = /^[a-zA-Z]+(\s{0,1}[a-zA-Z-, ])*$/;
-
-      if (fullName.match(valid)) {
-        return fullName;
-      } else {
-        console.log("Name can onlt contain letters!");
-      }
-
-      rl.close();
-    }
-  );
+  throw new Error("Name can only contain letters!");
 }
 
 //sperate initials and last name
@@ -36,7 +16,7 @@ function getNameWithInitials(fullName) {
   var initials = "";
   var lastName;
   var nameWithInit;
-  
+
   const words = fullName.split(" ");
 
   for (var i = 0; i < words.length - 1; i++) {
@@ -53,5 +33,7 @@ function getNameWithInitials(fullName) {
 
 //print the result
 function printResult(nameWithInit) {
-    console.log("Name with initials: " + nameWithInit);
+  console.log("Name with initials: " + nameWithInit);
 }
+
+export { validateName, getNameWithInitials, printResult };
